@@ -85,10 +85,26 @@ const deleteContentById = async (params) => {
     return content;
 }
 
+const addEntry = async (params,entry) => {
+    const addedEntry = await db.Entries.create({contentId:params.id, fields:entry});
+    return addedEntry;
+}
+
+const getAllEntry = async (params) => {
+    const entries = await db.Entries.findAll({where:{contentId:params.id}});
+    return entries;
+}
+
+const updateEntry = async (params,entry) => {
+    const updatedEntry = await db.Entries.update({fields:entry},{where:{contentId:params.id}});
+    return updatedEntry;
+};
+
+
 module.exports = {
     addContent,
     addField,
     deleteField,
     getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent,
-    deleteContentById
+    deleteContentById,addEntry,getAllEntry,updateEntry
 }

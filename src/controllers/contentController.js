@@ -121,10 +121,44 @@ const deleteContentById = async(req,res)=>{
     }
 }
 
+
+const getAllEntry = async(req, res)=>{
+    try{
+        const params = req.params;
+        const contentTypeEntry = await contentServices.getAllEntry(params);
+        res.status(200).send(contentTypeEntry);
+    }
+    catch(error){
+        res.status(500).send({message:error.message});
+    }
+}
+
+const addEntry = async(req, res)=>{
+    try{
+        const params = req.params;
+        const {newEntry} = req.body;
+        const contentTypeEntry = await contentServices.addEntry(params,newEntry);
+        res.status(200).send(contentTypeEntry);
+    }
+    catch(error){
+        res.status(500).send({message:error.message});
+    }
+}
+const updateEntry = async(req, res)=>{
+    try{
+        const params = req.params;
+        const {newEntry} = req.body;
+        const contentTypeEntry = await contentServices.updateContentEntries(params,newEntry);
+        res.status(200).json(contentTypeEntry);
+    }
+    catch(error){
+        res.status(500).send({message:error.message});
+    }
+}
 module.exports = {
     addContent,
     addField,
     deleteField,
     getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent,
-    deleteContentById
+    deleteContentById,getAllEntry,addEntry,updateEntry
 };

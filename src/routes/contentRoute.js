@@ -1,4 +1,5 @@
 const contentController = require('../controllers/contentController');
+// const {userAuth} = require('../middlewares');
 const router = require('express').Router();
 
 router.get('/contents', contentController.getContents);    //done
@@ -14,7 +15,11 @@ router.delete('/deleteField/:id', contentController.deleteField); //done
 router.put('/updateField/:id',contentController.updateField);     //done
 
 router.get('/getContentCount',contentController.getContentCount)  
-router.get('/getFieldCount/:id', contentController.getFieldCount)
+router.get('/getFieldCount/:id', contentController.getFieldCount)  
+
+router.get("/getAllEntry/:contentId",contentController.getAllEntry)
+router.post("/addEntry/:contentId",contentController.addEntry)
+router.put("/updateEntry/:contentId",contentController.updateEntry)
 
 
 module.exports = {
