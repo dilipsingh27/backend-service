@@ -79,9 +79,16 @@ const getContent = async (params) => {
     return content;
 }
 
+const deleteContentById = async (params) => {
+    const content = await db.Contents.destroy({where:{id:params.id}});
+    console.log(content);
+    return content;
+}
+
 module.exports = {
     addContent,
     addField,
     deleteField,
-    getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent
+    getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent,
+    deleteContentById
 }

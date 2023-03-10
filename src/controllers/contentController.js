@@ -111,9 +111,20 @@ const getContent = async(req,res)=>{
     }
 }
 
+const deleteContentById = async(req,res)=>{
+    try{
+        const params = req.params;
+        const contents = await contentServices.deleteContentById(params);
+        res.status(200).json(contents);
+    }catch(error){
+        res.status(500).send({message:error.message});
+    }
+}
+
 module.exports = {
     addContent,
     addField,
     deleteField,
-    getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent
+    getContents,updateField,updateContent,getContentCount,getFieldCount,deleteContent,getContent,
+    deleteContentById
 };
